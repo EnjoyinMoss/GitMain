@@ -2,6 +2,8 @@
 // Data source: NATS AIS Contingency PIB XML feed (all UK NOTAMs valid now + next 7 days)
 
 const NOTAM_XML_URL = "https://pibs.nats.co.uk/operational/pibs/PIB.xml";
+// GitHub-hosted mirror updated hourly — no CORS issues from GitHub Pages
+const NOTAM_MIRROR_URL = "https://raw.githubusercontent.com/Jonty/uk-notam-archive/main/data/PIB.xml";
 const CORS_PROXIES = [
     (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
     (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
@@ -139,7 +141,18 @@ function haversineKm(lat1, lng1, lat2, lng2) {
 
 // ---- Fetch and parse NOTAMs ----
 async function fetchNOTAMXml() {
-    // Try direct fetch first (works if CORS headers present or same-origin)
+    // Try GitHub mirror first (CORS-friendly, updated hourly)
+    try {
+        const resp = await fetch(NOTAM_MIRROR_URL, { signal: AbortSignal.timeout(15000) });
+        if (resp.ok) {
+            const text = await resp.text();
+            if (text.includes("<Pib") || text.includes("<Notam")) return text;
+        }
+    } catch {
+        // fall through to NATS direct + CORS proxies
+    }
+
+    // Try NATS direct, then CORS proxies as fallback
     for (let i = -1; i < CORS_PROXIES.length; i++) {
         const url = i === -1 ? NOTAM_XML_URL : CORS_PROXIES[i](NOTAM_XML_URL);
         try {
@@ -152,7 +165,7 @@ async function fetchNOTAMXml() {
         }
     }
     throw new Error(
-        "Could not fetch NOTAM data. CORS proxies may be unavailable. " +
+        "Could not fetch NOTAM data. All sources unavailable. " +
         "Try serving this page from a local server, or see README for proxy options."
     );
 }
