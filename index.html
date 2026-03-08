@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK NOTAM Radius Search</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="app">
+        <div id="sidebar">
+            <h1>UK NOTAM Search</h1>
+            <p class="subtitle">Click the map to drop a pin, adjust the radius, then search for NOTAMs within that area.</p>
+
+            <div id="controls">
+                <div class="control-group">
+                    <label for="radius-slider">
+                        Search Radius: <span id="radius-value">25</span> NM
+                    </label>
+                    <input type="range" id="radius-slider" min="1" max="200" value="25" step="1" />
+                </div>
+
+                <div class="control-group coordinates">
+                    <label>Pin Location</label>
+                    <div id="pin-coords">Click the map to place a pin</div>
+                </div>
+
+                <button id="search-btn" disabled>Search NOTAMs</button>
+                <button id="clear-btn" class="secondary">Clear Results</button>
+            </div>
+
+            <div id="status"></div>
+
+            <div id="results">
+                <div id="results-header"></div>
+                <div id="results-list"></div>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="notam.js"></script>
+</body>
+</html>
