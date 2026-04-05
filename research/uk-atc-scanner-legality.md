@@ -27,6 +27,16 @@
 | **Canada**  | Yes (receive-only is legal) |
 | **Australia** | No (similar restrictions to UK) |
 
+## Exception: Pilots Operating Aircraft
+
+Pilots are **authorised** to listen to (and transmit on) ATC frequencies. The Section 48 offence only applies to those who are **not authorised** to receive the messages. Pilots hold that authorisation through:
+
+- **Flight Radiotelephony Operator's Licence (FRTOL)** — specifically authorises use of aviation frequencies.
+- **Air Navigation Order (ANO)** — requires pilots to maintain a listening watch on the appropriate ATC frequency.
+- **Aircraft radio licence** — the aircraft itself must have a licensed radio station.
+
+Listening to ATC while piloting is not just legal — it is a **legal obligation** in controlled airspace.
+
 ## Legal Alternatives
 
 - **LiveATC.net** — Many UK ATC feeds are streamed online. Listening to internet streams is not covered by the Wireless Telegraphy Act.
