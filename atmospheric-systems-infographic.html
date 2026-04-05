@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atmospheric Engines: How Weather Systems Work</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0F0F23;color:#e0e0e0;line-height:1.6}
+.header{background:linear-gradient(135deg,#FF6B35,#FFD700,#45B7D1,#6C5CE7);padding:40px 20px;text-align:center}
+.header h1{font-family:'Poppins',sans-serif;font-size:2.8em;font-weight:900;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.5);margin-bottom:8px}
+.header h2{font-family:'Poppins',sans-serif;font-size:1.3em;font-weight:600;color:rgba(255,255,255,0.9)}
+.container{max-width:1200px;margin:0 auto;padding:30px 20px}
+.section{background:#1A1A2E;border-radius:16px;margin-bottom:35px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+.section-header{display:flex;align-items:center;gap:16px;padding:24px 28px;background:#16213E}
+.badge{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.3em;color:#fff;flex-shrink:0}
+.badge-1{background:linear-gradient(135deg,#FF6B35,#FFD700)}
+.badge-2{background:linear-gradient(135deg,#26DE81,#45B7D1)}
+.badge-3{background:linear-gradient(135deg,#6C5CE7,#45B7D1)}
+.badge-4{background:linear-gradient(135deg,#45B7D1,#6C5CE7)}
+.badge-5{background:linear-gradient(135deg,#FF6B35,#FF4444)}
+.section-header h3{font-family:'Poppins',sans-serif;font-size:1.5em;font-weight:700}
+.section-body{padding:28px}
+.section-text{font-size:1.05em;line-height:1.8;margin-bottom:24px;color:#ccc}
+.section-text strong{color:#FFD700}
+.section-text .term-warm{color:#FF6B35;font-weight:600}
+.section-text .term-cool{color:#45B7D1;font-weight:600}
+.section-text .term-energy{color:#26DE81;font-weight:600}
+.diagram-container{background:#0a0a1a;border-radius:12px;padding:16px;display:flex;justify-content:center;overflow:hidden}
+svg text{font-family:'Inter',sans-serif}
+.summary-box{background:linear-gradient(135deg,#16213E,#1A1A2E);border:2px solid #6C5CE7;border-radius:16px;padding:32px;margin-top:20px}
+.summary-box h3{font-family:'Poppins',sans-serif;font-size:1.4em;color:#6C5CE7;margin-bottom:16px}
+.summary-box ul{list-style:none;padding:0}
+.summary-box li{padding:8px 0;padding-left:28px;position:relative;font-size:1.05em;color:#ccc}
+.summary-box li::before{content:'⚡';position:absolute;left:0}
+.footer{text-align:center;padding:30px;color:#666;font-size:0.9em;border-top:1px solid #2C3E50}
+@keyframes pulse-sun{0%,100%{opacity:0.85}50%{opacity:1}}
+@keyframes float-cloud{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes wiggle{0%,100%{transform:translateX(0)}25%{transform:translateX(2px)}75%{transform:translateX(-2px)}}
+.sun-glow{animation:pulse-sun 3s ease-in-out infinite}
+.cloud-float{animation:float-cloud 4s ease-in-out infinite}
+.heat-wiggle{animation:wiggle 1.5s ease-in-out infinite}
+@media print{body{background:#fff;color:#222}.header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.section{break-inside:avoid;box-shadow:none;border:1px solid #ccc}.section-header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.section-text,.summary-box li{color:#333}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>ATMOSPHERIC ENGINES</h1>
+<h2>How Thermals &amp; Low Pressure Systems Work</h2>
+</div>
+<div class="container">
+<!-- SECTION 1: THERMAL ENGINE -->
+<div class="section">
+<div class="section-header">
+<div class="badge badge-1">1</div>
+<h3 style="color:#FFD700">The Thermal Engine — Solar Heating</h3>
+</div>
+<div class="section-body">
+<p class="section-text">Air near the surface gets <strong>warmed by the ground</strong>, becomes less dense, and rises. This creates <span class="term-warm">low pressure at the surface</span>. The rising air pulls surrounding air inward — that inward rush is the <span class="term-cool">wind you feel</span>. The <strong>sun is the ultimate energy source</strong>, heating the surface unevenly.</p>
+<div class="diagram-container">
+<svg viewBox="0 0 700 420" width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+<!-- Sky gradient background -->
+<defs>
+<linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#1a1a4e"/>
+<stop offset="40%" stop-color="#2a3a6e"/>
+<stop offset="70%" stop-color="#c44e20" stop-opacity="0.3"/>
+<stop offset="100%" stop-color="#FF6B35" stop-opacity="0.15"/>
+</linearGradient>
+<linearGradient id="ground1" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#8B4513"/>
+<stop offset="100%" stop-color="#2d1a08"/>
+</linearGradient>
+<radialGradient id="sunGrad" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0%" stop-color="#FFD700"/>
+<stop offset="70%" stop-color="#FF8C00"/>
+<stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="warmCol" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0%" stop-color="#FF4444"/>
+<stop offset="50%" stop-color="#FF8C00"/>
+<stop offset="100%" stop-color="#FFD700" stop-opacity="0.3"/>
+</linearGradient>
+</defs>
+<!-- Sky -->
+<rect width="700" height="420" fill="url(#sky1)"/>
+<!-- Ground -->
+<rect x="0" y="340" width="700" height="80" fill="url(#ground1)"/>
+<rect x="0" y="335" width="700" height="12" fill="#26DE81" opacity="0.4" rx="2"/>
+<!-- Sun -->
+<g class="sun-glow" transform="translate(600,65)">
+<circle r="55" fill="url(#sunGrad)" opacity="0.4"/>
+<circle r="35" fill="#FFD700"/>
+<line x1="0" y1="-50" x2="0" y2="-65" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="35" y1="-35" x2="46" y2="-46" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="50" y1="0" x2="65" y2="0" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="35" y1="35" x2="46" y2="46" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="-35" y1="-35" x2="-46" y2="-46" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="-50" y1="0" x2="-65" y2="0" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="-35" y1="35" x2="-46" y2="46" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="0" y1="50" x2="0" y2="65" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<text y="4" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">☀</text>
+</g>
+<!-- Sun rays hitting ground -->
+<line x1="565" y1="100" x2="400" y2="335" stroke="#FFD700" stroke-width="1.5" opacity="0.25" stroke-dasharray="8,6"/>
+<line x1="580" y1="105" x2="350" y2="340" stroke="#FFD700" stroke-width="1.5" opacity="0.2" stroke-dasharray="8,6"/>
+<line x1="595" y1="110" x2="300" y2="340" stroke="#FFD700" stroke-width="1.5" opacity="0.15" stroke-dasharray="8,6"/>
+<!-- Heat bubbles at surface -->
+<g class="heat-wiggle">
+<circle cx="280" cy="330" r="8" fill="#FF4444" opacity="0.5"/><text x="280" y="334" text-anchor="middle" fill="#FFD700" font-size="9">H</text>
+<circle cx="320" cy="325" r="6" fill="#FF6B35" opacity="0.5"/>
+<circle cx="370" cy="332" r="7" fill="#FF4444" opacity="0.4"/>
+<circle cx="250" cy="328" r="5" fill="#FF8C00" opacity="0.5"/>
+<circle cx="400" cy="330" r="6" fill="#FF6B35" opacity="0.45"/>
+</g>
+<!-- Squiggly heat lines rising from surface -->
+<path d="M260 330 Q265 315 260 300 Q255 285 260 270" stroke="#FF6B35" fill="none" stroke-width="2" opacity="0.6"/>
+<path d="M310 330 Q315 318 310 305 Q305 292 310 280" stroke="#FF8C00" fill="none" stroke-width="2" opacity="0.5"/>
+<path d="M390 330 Q395 318 390 305 Q385 292 390 280" stroke="#FF6B35" fill="none" stroke-width="2" opacity="0.5"/>
+<!-- Rising warm air column (centre) -->
+<path d="M300 335 L280 200 Q285 160 310 100 Q340 40 350 30 L350 30 Q360 40 390 100 Q415 160 420 200 L400 335 Z" fill="url(#warmCol)" opacity="0.3"/>
+<!-- Upward arrows in column -->
+<polygon points="350,50 340,80 345,80 345,160 355,160 355,80 360,80" fill="#FF8C00" opacity="0.7"/>
+<polygon points="330,140 322,165 328,165 328,230 340,230 340,165 346,165" fill="#FF6B35" opacity="0.6"/>
+<polygon points="370,140 362,165 368,165 368,230 380,230 380,165 386,165" fill="#FF6B35" opacity="0.6"/>
+<!-- Cloud at top (condensation) -->
+<g class="cloud-float" transform="translate(340,45)">
+<ellipse cx="0" cy="0" rx="50" ry="20" fill="#ddd" opacity="0.8"/>
+<ellipse cx="-25" cy="5" rx="30" ry="15" fill="#ccc" opacity="0.7"/>
+<ellipse cx="25" cy="5" rx="35" ry="16" fill="#eee" opacity="0.75"/>
+<ellipse cx="0" cy="-10" rx="35" ry="15" fill="#fff" opacity="0.6"/>
+</g>
+<!-- Rain drops -->
+<line x1="320" y1="70" x2="318" y2="85" stroke="#45B7D1" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+<line x1="340" y1="75" x2="338" y2="90" stroke="#45B7D1" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+<line x1="360" y1="72" x2="358" y2="87" stroke="#45B7D1" stroke-width="2" opacity="0.45" stroke-linecap="round"/>
+<!-- Cool air sinking on LEFT side -->
+<path d="M160 100 Q130 150 110 200 Q90 260 100 310 L110 340" stroke="#45B7D1" stroke-width="3" fill="none" opacity="0.7" marker-end="url(#arrowBlue)"/>
+<path d="M200 80 Q170 130 155 190 Q140 250 150 310 L155 335" stroke="#4ECDC4" stroke-width="2.5" fill="none" opacity="0.6"/>
+<!-- Cool air sinking on RIGHT side -->
+<path d="M540 100 Q570 150 590 200 Q610 260 600 310 L590 340" stroke="#45B7D1" stroke-width="3" fill="none" opacity="0.7"/>
+<path d="M500 80 Q530 130 545 190 Q560 250 550 310 L545 335" stroke="#4ECDC4" stroke-width="2.5" fill="none" opacity="0.6"/>
+<!-- Inward surface arrows (wind) -->
+<defs><marker id="arrowRed" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#FF4444"/></marker>
+<marker id="arrowBlue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#45B7D1"/></marker></defs>
+<line x1="60" y1="350" x2="240" y2="348" stroke="#FF4444" stroke-width="3" marker-end="url(#arrowRed)" opacity="0.8"/>
+<line x1="640" y1="350" x2="460" y2="348" stroke="#FF4444" stroke-width="3" marker-end="url(#arrowRed)" opacity="0.8"/>
+<!-- Labels -->
+<text x="600" y="30" fill="#FFD700" font-size="12" font-weight="700" text-anchor="middle">☀ SOLAR HEATING</text>
+<text x="350" y="260" fill="#FF8C00" font-size="11" font-weight="600" text-anchor="middle">RISING</text>
+<text x="350" y="275" fill="#FF8C00" font-size="11" font-weight="600" text-anchor="middle">WARM AIR</text>
+<text x="340" y="28" fill="#fff" font-size="10" font-weight="600" text-anchor="middle">Condensation at Dew Point</text>
+<text x="110" y="220" fill="#45B7D1" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-70,110,220)">COOL AIR SINKING</text>
+<text x="590" y="220" fill="#45B7D1" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(70,590,220)">COOL AIR SINKING</text>
+<text x="150" y="365" fill="#FF4444" font-size="10" font-weight="600" text-anchor="middle">Wind →</text>
+<text x="550" y="365" fill="#FF4444" font-size="10" font-weight="600" text-anchor="middle">← Wind</text>
+<text x="350" y="395" fill="#8B4513" font-size="10" text-anchor="middle">Surface Heating (Ground)</text>
+<!-- Temp scale -->
+<rect x="15" y="50" width="18" height="280" rx="9" fill="none" stroke="#666" stroke-width="1"/>
+<linearGradient id="tempScale" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#FF4444"/><stop offset="100%" stop-color="#45B7D1"/></linearGradient>
+<rect x="17" y="52" width="14" height="276" rx="7" fill="url(#tempScale)" opacity="0.7"/>
+<text x="24" y="45" fill="#45B7D1" font-size="8" text-anchor="middle">COLD</text>
+<text x="24" y="345" fill="#FF4444" font-size="8" text-anchor="middle">HOT</text>
+</svg>
+</div>
+</div>
+</div>
+<!-- SECTION 2: LATENT HEAT -->
+<div class="section">
+<div class="section-header">
+<div class="badge badge-2">2</div>
+<h3 style="color:#26DE81">Latent Heat Release — The Turbocharger</h3>
+</div>
+<div class="section-body">
+<p class="section-text">When moist air rises and cools, water vapour <strong>condenses into clouds</strong>. Condensation releases <span class="term-energy">latent heat</span> — energy absorbed when water first evaporated. This heat makes rising air <span class="term-warm">even more buoyant</span>, pulling in more surface air, lowering pressure further. It's a <strong>self-reinforcing feedback loop!</strong> Tropical cyclones are an extreme case — essentially <span class="term-energy">latent heat engines</span> running over warm ocean water.</p>
+<div class="diagram-container">
+<svg viewBox="0 0 700 420" width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="ocean2" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#1a6b8a"/>
+<stop offset="100%" stop-color="#0a3048"/>
+</linearGradient>
+<linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#0a0a2e"/>
+<stop offset="100%" stop-color="#1a3a5e"/>
+</linearGradient>
+<linearGradient id="moistCol" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0%" stop-color="#26DE81"/>
+<stop offset="50%" stop-color="#45B7D1"/>
+<stop offset="100%" stop-color="#fff" stop-opacity="0.3"/>
+</linearGradient>
+<marker id="arrowGreen" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#26DE81"/></marker>
+<marker id="arrowOrange" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#FF8C00"/></marker>
+</defs>
+<!-- Sky -->
+<rect width="700" height="420" fill="url(#sky2)"/>
+<!-- Ocean -->
+<rect x="0" y="340" width="700" height="80" fill="url(#ocean2)"/>
+<!-- Ocean waves -->
+<path d="M0 345 Q35 335 70 345 Q105 355 140 345 Q175 335 210 345 Q245 355 280 345 Q315 335 350 345 Q385 355 420 345 Q455 335 490 345 Q525 355 560 345 Q595 335 630 345 Q665 355 700 345" stroke="#45B7D1" fill="none" stroke-width="2" opacity="0.5"/>
+<!-- Evaporation arrows from ocean -->
+<g>
+<path d="M200 340 Q205 320 200 300 Q195 285 200 270" stroke="#26DE81" stroke-width="2.5" fill="none" opacity="0.7" marker-end="url(#arrowGreen)"/>
+<path d="M260 340 Q265 322 260 305 Q255 288 260 272" stroke="#26DE81" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowGreen)"/>
+<path d="M320 340 Q325 322 320 305 Q315 290 320 275" stroke="#26DE81" stroke-width="2.5" fill="none" opacity="0.7" marker-end="url(#arrowGreen)"/>
+<path d="M380 338 Q385 320 380 303 Q375 288 380 273" stroke="#26DE81" stroke-width="2" fill="none" opacity="0.6" marker-end="url(#arrowGreen)"/>
+<path d="M440 340 Q445 322 440 305 Q435 290 440 275" stroke="#26DE81" stroke-width="2" fill="none" opacity="0.5" marker-end="url(#arrowGreen)"/>
+</g>
+<!-- Yellow energy sparkles near evaporation -->
+<text x="215" y="310" fill="#FFD700" font-size="14" opacity="0.8">✦</text>
+<text x="275" y="300" fill="#FFD700" font-size="12" opacity="0.7">✦</text>
+<text x="335" y="308" fill="#FFD700" font-size="13" opacity="0.75">✦</text>
+<text x="395" y="305" fill="#FFD700" font-size="11" opacity="0.65">✦</text>
+<!-- Rising moist air column -->
+<path d="M270 340 L255 200 Q260 140 300 80 Q320 50 330 40 L330 40 Q340 50 360 80 Q400 140 405 200 L390 340 Z" fill="url(#moistCol)" opacity="0.25"/>
+<!-- Upward arrows in moist column -->
+<polygon points="330,60 320,90 326,90 326,180 334,180 334,90 340,90" fill="#26DE81" opacity="0.6"/>
+<polygon points="310,150 302,175 308,175 308,250 318,250 318,175 324,175" fill="#4ECDC4" opacity="0.5"/>
+<polygon points="355,150 347,175 353,175 353,250 363,250 363,175 369,175" fill="#4ECDC4" opacity="0.5"/>
+<!-- CLOUD with latent heat release -->
+<g class="cloud-float" transform="translate(330,100)">
+<ellipse cx="0" cy="0" rx="65" ry="30" fill="#aaa" opacity="0.7"/>
+<ellipse cx="-30" cy="8" rx="40" ry="20" fill="#bbb" opacity="0.65"/>
+<ellipse cx="30" cy="8" rx="45" ry="22" fill="#ccc" opacity="0.7"/>
+<ellipse cx="0" cy="-15" rx="45" ry="18" fill="#ddd" opacity="0.6"/>
+<!-- Latent heat bursts inside cloud -->
+<polygon points="0,-8 4,-2 10,-4 6,2 10,8 4,6 0,12 -4,6 -10,8 -6,2 -10,-4 -4,-2" fill="#FFD700" opacity="0.9"/>
+<polygon points="-25,0 -22,4 -18,3 -20,7 -17,10 -22,9 -25,13 -28,9 -33,10 -30,7 -32,3 -28,4" fill="#FF8C00" opacity="0.8"/>
+<polygon points="28,-2 31,2 35,1 33,5 36,8 31,7 28,11 25,7 20,8 23,5 21,1 25,2" fill="#FFD700" opacity="0.85"/>
+</g>
+<text x="330" y="65" fill="#FFD700" font-size="10" font-weight="700" text-anchor="middle">LATENT HEAT</text>
+<text x="330" y="77" fill="#FFD700" font-size="10" font-weight="700" text-anchor="middle">RELEASED! ⚡</text>
+<!-- Feedback loop arrows (circular) -->
+<path d="M460 340 Q500 300 490 240 Q480 180 440 140" stroke="#FF8C00" stroke-width="2.5" fill="none" opacity="0.6" stroke-dasharray="6,4" marker-end="url(#arrowOrange)"/>
+<path d="M440 140 Q410 120 370 110" stroke="#FF8C00" stroke-width="2.5" fill="none" opacity="0.6" stroke-dasharray="6,4" marker-end="url(#arrowOrange)"/>
+<text x="500" y="230" fill="#FF8C00" font-size="9" font-weight="600" transform="rotate(-75,500,230)">More Rising</text>
+<text x="430" y="128" fill="#FF8C00" font-size="9" font-weight="600">Condensation</text>
+<!-- Surface inflow arrows (wind rushing in) -->
+<path d="M80 355 Q150 352 240 350" stroke="#FF4444" stroke-width="3" fill="none" opacity="0.7" marker-end="url(#arrowRed)"/>
+<path d="M620 355 Q540 352 420 350" stroke="#FF4444" stroke-width="3" fill="none" opacity="0.7" marker-end="url(#arrowRed)"/>
+<!-- Feedback loop labels -->
+<rect x="480" y="280" width="190" height="50" rx="8" fill="#1A1A2E" stroke="#FF8C00" stroke-width="1.5" opacity="0.9"/>
+<text x="575" y="300" fill="#FF8C00" font-size="10" font-weight="600" text-anchor="middle">FEEDBACK LOOP</text>
+<text x="575" y="315" fill="#ccc" font-size="8" text-anchor="middle">Evaporate → Rise → Condense → Heat</text>
+<text x="575" y="325" fill="#ccc" font-size="8" text-anchor="middle">→ Rise More → Pull More Air In</text>
+<!-- Hurricane icon -->
+<g transform="translate(620,60)">
+<circle r="30" fill="none" stroke="#FF4444" stroke-width="2" opacity="0.4"/>
+<path d="M0,-20 Q15,-10 10,0 Q5,10 0,5 Q-5,0 -10,5 Q-15,15 0,20" stroke="#FF4444" stroke-width="2" fill="none" opacity="0.7"/>
+<circle r="4" fill="#FF4444" opacity="0.8"/>
+<text x="0" y="50" fill="#FF4444" font-size="9" font-weight="600" text-anchor="middle">Extreme Case:</text>
+<text x="0" y="62" fill="#FF4444" font-size="9" font-weight="600" text-anchor="middle">Tropical Cyclones</text>
+</g>
+<!-- Labels -->
+<text x="200" y="260" fill="#26DE81" font-size="10" font-weight="600" text-anchor="middle">Evaporation</text>
+<text x="120" y="370" fill="#FF4444" font-size="10" font-weight="600">Surface Wind →</text>
+<text x="500" y="370" fill="#FF4444" font-size="10" font-weight="600">← Surface Wind</text>
+<text x="350" y="400" fill="#45B7D1" font-size="10" text-anchor="middle">Warm Ocean Surface</text>
+</svg>
+</div>
+</div>
+</div>
+<!-- SECTION 3: BAROCLINIC INSTABILITY -->
+<div class="section">
+<div class="section-header">
+<div class="badge badge-3">3</div>
+<h3 style="color:#6C5CE7">Baroclinic Instability — Mid-Latitude Cyclones</h3>
+</div>
+<div class="section-body">
+<p class="section-text"><span class="term-cool">Mid-latitude cyclones</span> tap the <strong>temperature contrast</strong> between cold polar air and warm tropical air. When cold dense air sits next to warm light air, the atmosphere is unstable. Cyclones grow by rearranging this — <span class="term-warm">warm air rises poleward</span>, <span class="term-cool">cold air sinks equatorward</span> — converting <span class="term-energy">potential energy into kinetic energy (wind)</span>. This is why storms are often strongest along fronts.</p>
+<div class="diagram-container">
+<svg viewBox="0 0 700 420" width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="warmSide" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#FF6B35" stop-opacity="0.3"/>
+<stop offset="100%" stop-color="#FF6B35" stop-opacity="0.05"/>
+</linearGradient>
+<linearGradient id="coldSide" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#45B7D1" stop-opacity="0.05"/>
+<stop offset="100%" stop-color="#6C5CE7" stop-opacity="0.3"/>
+</linearGradient>
+<marker id="arrowYellow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#FFD700"/></marker>
+<marker id="arrowCyan" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#45B7D1"/></marker>
+<marker id="arrowPurple" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#6C5CE7"/></marker>
+</defs>
+<!-- Background halves -->
+<rect width="700" height="420" fill="#0a0a2e"/>
+<rect x="0" y="0" width="350" height="380" fill="url(#warmSide)"/>
+<rect x="350" y="0" width="350" height="380" fill="url(#coldSide)"/>
+<!-- Ground -->
+<rect x="0" y="380" width="700" height="40" fill="#1a1a2e"/>
+<!-- Equator / Pole labels -->
+<text x="80" y="405" fill="#FF6B35" font-size="14" font-weight="800">EQUATOR (Warm)</text>
+<text x="520" y="405" fill="#45B7D1" font-size="14" font-weight="800">POLE (Cold)</text>
+<!-- Warm air mass -->
+<rect x="40" y="80" width="250" height="260" rx="12" fill="#FF6B35" opacity="0.1" stroke="#FF6B35" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="165" y="100" fill="#FF6B35" font-size="11" font-weight="700" text-anchor="middle">WARM LIGHT AIR</text>
+<!-- Cold air mass -->
+<rect x="410" y="80" width="250" height="260" rx="12" fill="#45B7D1" opacity="0.1" stroke="#45B7D1" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="535" y="100" fill="#45B7D1" font-size="11" font-weight="700" text-anchor="middle">COLD DENSE AIR</text>
+<!-- Frontal boundary -->
+<line x1="350" y1="50" x2="350" y2="380" stroke="#FFD700" stroke-width="3" stroke-dasharray="10,6" opacity="0.8"/>
+<text x="350" y="42" fill="#FFD700" font-size="11" font-weight="700" text-anchor="middle">FRONT</text>
+<!-- Warm air rising poleward (up and right) -->
+<path d="M250 280 Q280 220 310 170 Q340 120 420 80" stroke="#FFD700" stroke-width="3" fill="none" opacity="0.8" marker-end="url(#arrowYellow)"/>
+<path d="M200 300 Q240 240 280 190 Q320 140 380 100" stroke="#FF8C00" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowOrange)"/>
+<text x="280" y="140" fill="#FFD700" font-size="10" font-weight="600" transform="rotate(-40,280,140)">Warm air rises poleward ↗</text>
+<!-- Cold air sinking equatorward (down and left) -->
+<path d="M450 120 Q420 180 390 230 Q360 280 280 320" stroke="#45B7D1" stroke-width="3" fill="none" opacity="0.8" marker-end="url(#arrowCyan)"/>
+<path d="M500 140 Q470 200 440 250 Q410 300 340 340" stroke="#4ECDC4" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowCyan)"/>
+<text x="430" y="270" fill="#45B7D1" font-size="10" font-weight="600" transform="rotate(-40,430,270)">Cold air sinks equatorward ↙</text>
+<!-- Developing cyclone L -->
+<circle cx="350" cy="220" r="35" fill="none" stroke="#FF4444" stroke-width="2" opacity="0.6"/>
+<text x="350" y="230" fill="#FF4444" font-size="32" font-weight="900" text-anchor="middle">L</text>
+<text x="350" y="250" fill="#FF4444" font-size="8" text-anchor="middle">Cyclone</text>
+<!-- Spinning arrows around L -->
+<path d="M325 195 Q350 185 375 195" stroke="#FF4444" stroke-width="1.5" fill="none" marker-end="url(#arrowRed)"/>
+<path d="M375 245 Q350 255 325 245" stroke="#FF4444" stroke-width="1.5" fill="none" marker-end="url(#arrowRed)"/>
+<!-- Energy conversion arrows -->
+<g transform="translate(350,330)">
+<rect x="-110" y="-15" width="220" height="30" rx="6" fill="#16213E" stroke="#26DE81" stroke-width="1.5"/>
+<text x="0" y="4" fill="#26DE81" font-size="10" font-weight="700" text-anchor="middle">⚡ Potential Energy → Kinetic Energy (Wind)</text>
+</g>
+<!-- Jet stream at top -->
+<path d="M0 55 Q100 40 200 55 Q300 70 400 50 Q500 30 600 50 Q650 60 700 45" stroke="#6C5CE7" stroke-width="6" fill="none" opacity="0.5"/>
+<path d="M0 55 Q100 40 200 55 Q300 70 400 50 Q500 30 600 50 Q650 60 700 45" stroke="#9B8FFF" stroke-width="2" fill="none" opacity="0.8"/>
+<text x="550" y="38" fill="#6C5CE7" font-size="10" font-weight="700">JET STREAM →</text>
+<!-- Temperature indicators -->
+<text x="120" y="200" fill="#FF6B35" font-size="28" opacity="0.3">🌡</text>
+<text x="140" y="220" fill="#FF6B35" font-size="10" opacity="0.6">Warm</text>
+<text x="560" y="200" fill="#45B7D1" font-size="28" opacity="0.3">❄</text>
+<text x="570" y="220" fill="#45B7D1" font-size="10" opacity="0.6">Cold</text>
+</svg>
+</div>
+</div>
+</div>
+<!-- SECTION 4: UPPER-LEVEL DYNAMICS -->
+<div class="section">
+<div class="section-header">
+<div class="badge badge-4">4</div>
+<h3 style="color:#45B7D1">Upper-Level Dynamics &amp; The Jet Stream</h3>
+</div>
+<div class="section-body">
+<p class="section-text"><span class="term-cool">Jet streams</span> help <strong>ventilate</strong> developing low pressure systems. When air is <span class="term-energy">pumped out of the top</span> of a column faster than it flows in at the bottom, <span class="term-warm">surface pressure drops</span> and the system deepens. Think of it like a chimney effect — the jet stream pulls air away from the top.</p>
+<div class="diagram-container">
+<svg viewBox="0 0 700 420" width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#0a0a2e"/>
+<stop offset="60%" stop-color="#16213E"/>
+<stop offset="100%" stop-color="#1a3a4e"/>
+</linearGradient>
+<marker id="arrowGreenBig" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#26DE81"/></marker>
+<marker id="arrowRedBig" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#FF4444"/></marker>
+</defs>
+<rect width="700" height="420" fill="url(#sky4)"/>
+<!-- Ground -->
+<rect x="0" y="370" width="700" height="50" fill="#2d1a08"/>
+<rect x="0" y="365" width="700" height="10" fill="#26DE81" opacity="0.3"/>
+<!-- Altitude scale on left -->
+<line x1="50" y1="60" x2="50" y2="365" stroke="#666" stroke-width="1"/>
+<text x="45" y="365" fill="#888" font-size="9" text-anchor="end">0 km</text>
+<text x="45" y="300" fill="#888" font-size="9" text-anchor="end">2 km</text>
+<text x="45" y="235" fill="#888" font-size="9" text-anchor="end">4 km</text>
+<text x="45" y="170" fill="#888" font-size="9" text-anchor="end">6 km</text>
+<text x="45" y="105" fill="#888" font-size="9" text-anchor="end">8 km</text>
+<text x="45" y="72" fill="#888" font-size="9" text-anchor="end">10 km</text>
+<line x1="47" y1="365" x2="53" y2="365" stroke="#888" stroke-width="1"/>
+<line x1="47" y1="300" x2="53" y2="300" stroke="#888" stroke-width="1"/>
+<line x1="47" y1="235" x2="53" y2="235" stroke="#888" stroke-width="1"/>
+<line x1="47" y1="170" x2="53" y2="170" stroke="#888" stroke-width="1"/>
+<line x1="47" y1="105" x2="53" y2="105" stroke="#888" stroke-width="1"/>
+<line x1="47" y1="72" x2="53" y2="72" stroke="#888" stroke-width="1"/>
+<!-- Low pressure L at surface -->
+<circle cx="350" cy="355" r="28" fill="#FF4444" opacity="0.15" stroke="#FF4444" stroke-width="2"/>
+<text x="350" y="363" fill="#FF4444" font-size="28" font-weight="900" text-anchor="middle">L</text>
+<!-- Surface convergence arrows (red, coming inward) -->
+<path d="M120 360 Q180 358 280 355" stroke="#FF4444" stroke-width="4" fill="none" opacity="0.7" marker-end="url(#arrowRedBig)"/>
+<path d="M580 360 Q520 358 420 355" stroke="#FF4444" stroke-width="4" fill="none" opacity="0.7" marker-end="url(#arrowRedBig)"/>
+<text x="180" y="385" fill="#FF4444" font-size="11" font-weight="700">SURFACE CONVERGENCE →</text>
+<text x="440" y="385" fill="#FF4444" font-size="11" font-weight="700">← SURFACE CONVERGENCE</text>
+<!-- Rising air column -->
+<rect x="330" y="90" width="40" height="265" rx="4" fill="#FF8C00" opacity="0.1"/>
+<polygon points="350,95 338,130 344,130 344,300 356,300 356,130 362,130" fill="#FF8C00" opacity="0.5"/>
+<polygon points="335,180 328,205 334,205 334,310 344,310 344,205 350,205" fill="#FF6B35" opacity="0.35"/>
+<polygon points="365,180 358,205 364,205 364,310 374,310 374,205 380,205" fill="#FF6B35" opacity="0.35"/>
+<text x="350" y="250" fill="#FF8C00" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-90,350,250)">RISING AIR</text>
+<!-- JET STREAM at ~10km -->
+<path d="M60 75 Q150 60 250 80 Q350 100 450 70 Q550 40 650 65 Q680 72 700 68" stroke="#6C5CE7" stroke-width="14" fill="none" opacity="0.3"/>
+<path d="M60 75 Q150 60 250 80 Q350 100 450 70 Q550 40 650 65 Q680 72 700 68" stroke="#9B8FFF" stroke-width="4" fill="none" opacity="0.8"/>
+<path d="M60 75 Q150 60 250 80 Q350 100 450 70 Q550 40 650 65 Q680 72 700 68" stroke="#fff" stroke-width="1" fill="none" opacity="0.4"/>
+<!-- Jet stream direction arrows -->
+<text x="150" y="58" fill="#6C5CE7" font-size="12" font-weight="800">JET STREAM →→→</text>
+<!-- Upper-level DIVERGENCE arrows (green, spreading outward from top of column) -->
+<path d="M350 90 Q300 80 220 75" stroke="#26DE81" stroke-width="3.5" fill="none" opacity="0.8" marker-end="url(#arrowGreenBig)"/>
+<path d="M350 90 Q400 80 480 75" stroke="#26DE81" stroke-width="3.5" fill="none" opacity="0.8" marker-end="url(#arrowGreenBig)"/>
+<path d="M350 90 Q320 70 260 55" stroke="#26DE81" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowGreenBig)"/>
+<path d="M350 90 Q380 70 440 55" stroke="#26DE81" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowGreenBig)"/>
+<!-- Divergence label -->
+<rect x="190" y="100" width="180" height="25" rx="6" fill="#0a0a2e" stroke="#26DE81" stroke-width="1.5" opacity="0.9"/>
+<text x="280" y="117" fill="#26DE81" font-size="11" font-weight="700" text-anchor="middle">UPPER-LEVEL DIVERGENCE</text>
+<!-- Explanation box -->
+<rect x="480" y="140" width="190" height="85" rx="8" fill="#16213E" stroke="#45B7D1" stroke-width="1.5" opacity="0.9"/>
+<text x="575" y="160" fill="#45B7D1" font-size="10" font-weight="700" text-anchor="middle">HOW IT WORKS:</text>
+<text x="575" y="178" fill="#ccc" font-size="9" text-anchor="middle">More air EXITS top ↑</text>
+<text x="575" y="193" fill="#ccc" font-size="9" text-anchor="middle">than ENTERS bottom →</text>
+<text x="575" y="210" fill="#FFD700" font-size="10" font-weight="700" text-anchor="middle">= Pressure DROPS ↓↓</text>
+<!-- Pressure falls annotation -->
+<text x="350" y="340" fill="#FFD700" font-size="10" font-weight="700" text-anchor="middle">PRESSURE FALLS</text>
+<path d="M350 342 L350 352" stroke="#FFD700" stroke-width="2" marker-end="url(#arrowYellow)"/>
+</svg>
+</div>
+</div>
+</div>
+<!-- SECTION 5: BIG PICTURE -->
+<div class="section">
+<div class="section-header">
+<div class="badge badge-5">5</div>
+<h3 style="color:#FF6B35">The Big Picture — Global Energy Redistribution</h3>
+</div>
+<div class="section-body">
+<p class="section-text"><strong>Solar heating</strong> creates temperature and moisture gradients. <span class="term-warm">Low pressure systems</span> are the atmosphere's mechanism for <span class="term-energy">redistributing energy</span> — evening out imbalances between <span class="term-warm">equator and poles</span>, and between the <span class="term-cool">warm ocean surface and the cold upper atmosphere</span>.</p>
+<div class="diagram-container">
+<svg viewBox="0 0 700 420" width="700" height="420" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="sunBig" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0%" stop-color="#FFD700"/>
+<stop offset="60%" stop-color="#FF8C00"/>
+<stop offset="100%" stop-color="#FF6B35" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="earthSurf" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0%" stop-color="#6C5CE7" stop-opacity="0.4"/>
+<stop offset="20%" stop-color="#45B7D1" stop-opacity="0.3"/>
+<stop offset="50%" stop-color="#FF6B35" stop-opacity="0.4"/>
+<stop offset="80%" stop-color="#45B7D1" stop-opacity="0.3"/>
+<stop offset="100%" stop-color="#6C5CE7" stop-opacity="0.4"/>
+</linearGradient>
+</defs>
+<rect width="700" height="420" fill="#0a0a2e"/>
+<!-- Sun on left -->
+<g class="sun-glow" transform="translate(60,100)">
+<circle r="65" fill="url(#sunBig)" opacity="0.35"/>
+<circle r="40" fill="#FFD700"/>
+<line x1="0" y1="-55" x2="0" y2="-72" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="39" y1="-39" x2="51" y2="-51" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="55" y1="0" x2="72" y2="0" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="39" y1="39" x2="51" y2="51" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="-39" y1="-39" x2="-51" y2="-51" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="-55" y1="0" x2="-72" y2="0" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="-39" y1="39" x2="-51" y2="51" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+<line x1="0" y1="55" x2="0" y2="72" stroke="#FFD700" stroke-width="3" opacity="0.7"/>
+</g>
+<!-- Sun rays toward earth -->
+<line x1="110" y1="120" x2="210" y2="250" stroke="#FFD700" stroke-width="2" opacity="0.2" stroke-dasharray="6,4"/>
+<line x1="115" y1="130" x2="300" y2="280" stroke="#FFD700" stroke-width="2" opacity="0.3" stroke-dasharray="6,4"/>
+<line x1="120" y1="140" x2="380" y2="300" stroke="#FFD700" stroke-width="2.5" opacity="0.35" stroke-dasharray="6,4"/>
+<line x1="115" y1="150" x2="450" y2="290" stroke="#FFD700" stroke-width="2" opacity="0.25" stroke-dasharray="6,4"/>
+<text x="60" y="185" fill="#FFD700" font-size="9" font-weight="700" text-anchor="middle">SOLAR</text>
+<text x="60" y="197" fill="#FFD700" font-size="9" font-weight="700" text-anchor="middle">INPUT</text>
+<!-- Curved Earth surface -->
+<path d="M150 350 Q250 320 350 310 Q450 320 550 350 Q600 365 650 380" stroke="none" fill="url(#earthSurf)"/>
+<path d="M150 350 Q250 320 350 310 Q450 320 550 350 Q600 365 650 380 L650 400 L150 400 Z" fill="#1a2a3e" opacity="0.5"/>
+<path d="M150 350 Q250 320 350 310 Q450 320 550 350 Q600 365 650 380" stroke="#4ECDC4" stroke-width="2" fill="none" opacity="0.6"/>
+<!-- Zone labels on surface -->
+<text x="190" y="375" fill="#6C5CE7" font-size="10" font-weight="700" text-anchor="middle">POLE</text>
+<text x="275" y="345" fill="#45B7D1" font-size="10" font-weight="700" text-anchor="middle">MID-LAT</text>
+<text x="350" y="335" fill="#FF6B35" font-size="11" font-weight="800" text-anchor="middle">EQUATOR</text>
+<text x="425" y="345" fill="#45B7D1" font-size="10" font-weight="700" text-anchor="middle">MID-LAT</text>
+<text x="530" y="375" fill="#6C5CE7" font-size="10" font-weight="700" text-anchor="middle">POLE</text>
+<!-- Solar input max arrow -->
+<path d="M350 280 L350 305" stroke="#FFD700" stroke-width="3" marker-end="url(#arrowYellow)"/>
+<text x="350" y="275" fill="#FFD700" font-size="9" font-weight="600" text-anchor="middle">MAX SOLAR INPUT</text>
+<!-- HADLEY CELL (equator region) -->
+<!-- Rising at equator -->
+<path d="M350 300 L350 180" stroke="#FF6B35" stroke-width="3" fill="none" opacity="0.7" marker-end="url(#arrowOrange)"/>
+<!-- Poleward aloft (right) -->
+<path d="M355 185 Q400 170 440 180" stroke="#FF8C00" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowOrange)"/>
+<!-- Sinking at ~30 -->
+<path d="M445 185 L450 260" stroke="#45B7D1" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowCyan)"/>
+<!-- Return flow -->
+<path d="M445 265 Q400 285 360 300" stroke="#45B7D1" stroke-width="2" fill="none" opacity="0.5" stroke-dasharray="4,3"/>
+<!-- Poleward aloft (left) -->
+<path d="M345 185 Q300 170 260 180" stroke="#FF8C00" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowOrange)"/>
+<!-- Sinking at ~30 left -->
+<path d="M255 185 L250 260" stroke="#45B7D1" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#arrowCyan)"/>
+<!-- Return flow left -->
+<path d="M255 265 Q300 285 340 300" stroke="#45B7D1" stroke-width="2" fill="none" opacity="0.5" stroke-dasharray="4,3"/>
+<!-- Hadley cell label -->
+<text x="400" y="210" fill="#FF8C00" font-size="9" font-weight="600">Hadley</text>
+<text x="400" y="222" fill="#FF8C00" font-size="9" font-weight="600">Cell</text>
+<text x="295" y="210" fill="#FF8C00" font-size="9" font-weight="600">Hadley</text>
+<text x="295" y="222" fill="#FF8C00" font-size="9" font-weight="600">Cell</text>
+<!-- FERREL CELL (mid-lat right) -->
+<path d="M460 255 Q475 220 500 210" stroke="#4ECDC4" stroke-width="2" fill="none" opacity="0.5" marker-end="url(#arrowCyan)"/>
+<path d="M505 215 L510 280" stroke="#45B7D1" stroke-width="2" fill="none" opacity="0.4"/>
+<text x="485" y="238" fill="#4ECDC4" font-size="8" font-weight="600">Ferrel</text>
+<!-- FERREL CELL (mid-lat left) -->
+<path d="M240 255 Q225 220 200 210" stroke="#4ECDC4" stroke-width="2" fill="none" opacity="0.5" marker-end="url(#arrowCyan)"/>
+<path d="M195 215 L190 280" stroke="#45B7D1" stroke-width="2" fill="none" opacity="0.4"/>
+<text x="215" y="238" fill="#4ECDC4" font-size="8" font-weight="600">Ferrel</text>
+<!-- Low pressure systems at mid-latitudes -->
+<g transform="translate(275,290)">
+<circle r="14" fill="none" stroke="#FF4444" stroke-width="1.5" opacity="0.7"/>
+<text x="0" y="5" fill="#FF4444" font-size="14" font-weight="900" text-anchor="middle">L</text>
+</g>
+<g transform="translate(430,290)">
+<circle r="14" fill="none" stroke="#FF4444" stroke-width="1.5" opacity="0.7"/>
+<text x="0" y="5" fill="#FF4444" font-size="14" font-weight="900" text-anchor="middle">L</text>
+</g>
+<!-- Energy flow arrows equator to poles -->
+<path d="M340 250 Q280 240 220 260" stroke="#26DE81" stroke-width="3" fill="none" opacity="0.5" marker-end="url(#arrowGreenBig)" stroke-dasharray="6,4"/>
+<path d="M360 250 Q420 240 490 260" stroke="#26DE81" stroke-width="3" fill="none" opacity="0.5" marker-end="url(#arrowGreenBig)" stroke-dasharray="6,4"/>
+<text x="280" y="260" fill="#26DE81" font-size="8" font-weight="600">Energy Flow</text>
+<text x="430" y="260" fill="#26DE81" font-size="8" font-weight="600">Energy Flow</text>
+<!-- Evaporation from ocean -->
+<path d="M320 308 Q318 295 322 285" stroke="#26DE81" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M370 308 Q372 295 368 285" stroke="#26DE81" stroke-width="1.5" fill="none" opacity="0.5"/>
+<!-- Heat radiated to space (top) -->
+<line x1="250" y1="140" x2="240" y2="80" stroke="#FF4444" stroke-width="1.5" opacity="0.3" stroke-dasharray="3,3"/>
+<line x1="350" y1="160" x2="350" y2="80" stroke="#FF4444" stroke-width="1.5" opacity="0.3" stroke-dasharray="3,3"/>
+<line x1="450" y1="150" x2="460" y2="80" stroke="#FF4444" stroke-width="1.5" opacity="0.3" stroke-dasharray="3,3"/>
+<text x="350" y="70" fill="#FF4444" font-size="9" font-weight="600" text-anchor="middle" opacity="0.6">↑ Heat Lost to Space ↑</text>
+<!-- Top banner -->
+<rect x="150" y="30" width="400" height="30" rx="8" fill="#16213E" stroke="#26DE81" stroke-width="1.5" opacity="0.9"/>
+<text x="350" y="50" fill="#26DE81" font-size="12" font-weight="700" text-anchor="middle">GLOBAL ENERGY REDISTRIBUTION</text>
+</svg>
+</div>
+</div>
+</div>
+<!-- KEY CONCEPTS SUMMARY -->
+<div class="summary-box">
+<h3>Key Concepts to Remember</h3>
+<ul>
+<li><strong style="color:#FFD700">The Sun is the engine</strong> — uneven solar heating creates the temperature and moisture differences that drive all weather systems</li>
+<li><strong style="color:#FF6B35">Low pressure = rising air</strong> — warm air rises, creating low pressure at the surface; surrounding air rushes in as wind</li>
+<li><strong style="color:#26DE81">Latent heat is the turbocharger</strong> — water vapour condensing into clouds releases enormous energy, creating a self-reinforcing feedback loop</li>
+<li><strong style="color:#6C5CE7">Temperature contrasts power mid-latitude storms</strong> — cold polar air vs. warm tropical air provides the energy for the cyclones that cross the UK and similar regions</li>
+<li><strong style="color:#45B7D1">The jet stream ventilates from above</strong> — upper-level divergence removes air from the top of developing systems, causing pressure to drop further</li>
+<li><strong style="color:#4ECDC4">Weather systems redistribute energy</strong> — they are the atmosphere's way of evening out the imbalance between the hot equator and cold poles</li>
+</ul>
+</div>
+</div>
+<div class="footer">
+<p>Science Department — Atmospheric Systems | Created for educational purposes</p>
+</div>
+</body>
+</html>
