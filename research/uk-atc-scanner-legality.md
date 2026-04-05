@@ -54,6 +54,40 @@ The FRTOL is a **competency licence**, not a subscription or access pass. It cer
 
 The UK and US take different philosophical approaches: the US treats ATC as transparent public infrastructure where anyone may listen, while the UK prioritises keeping operational frequencies controlled and restricts access to qualified participants.
 
+## Could Receive-Only Monitoring Be Defended in Law?
+
+A pilot operating in Class G airspace without an FRTOL could potentially argue that passive receive-only monitoring of local ATC frequencies is justified on safety grounds. Several legal avenues support this:
+
+### Safety and Necessity
+
+- The pilot is legally permitted to be in the airspace and shares it with other traffic.
+- Passive monitoring provides situational awareness that directly reduces collision risk.
+- No transmission means no interference with the ATC service.
+- Denying the ability to listen arguably increases danger to the pilot and to others.
+
+### Proportionality
+
+Section 48 was drafted broadly to cover espionage, criminal eavesdropping, and commercial piracy. Applying it to a pilot passively monitoring for self-preservation may fail a proportionality test — the harm is nil, the safety benefit is real, and there is no interference with the service.
+
+### Human Rights (ECHR Article 2 — Right to Life)
+
+Preventing a pilot from monitoring traffic in shared airspace could be argued to undermine their right to protect their own life.
+
+### Regulatory Inconsistency
+
+The CAA actively promotes situational awareness and electronic conspicuity (ADS-B, FLARM, PilotAware). It would be internally contradictory for the regulatory framework to promote awareness while criminalising one of the simplest means of achieving it. The UK Airprox Board regularly identifies lack of awareness as a factor in near-misses.
+
+### Counter-Arguments
+
+- The law as written is clear and does not carve out a "safety monitoring" exception.
+- No known test case has been prosecuted in this specific scenario.
+- The CAA would likely argue the FRTOL ensures pilots can correctly interpret what they hear — partial information without training can be worse than none.
+- The practical barrier to obtaining the FRTOL is low, which weakens the necessity argument.
+
+### Assessment
+
+The argument has genuine legal merit but is untested. The more practical paths are: (a) obtain the FRTOL, or (b) campaign for a regulatory change to create an explicit receive-only exemption for airborne pilots.
+
 ## Legal Alternatives
 
 - **LiveATC.net** — Many UK ATC feeds are streamed online. Listening to internet streams is not covered by the Wireless Telegraphy Act.
