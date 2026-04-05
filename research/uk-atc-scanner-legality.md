@@ -46,6 +46,14 @@ Paramotors typically operate in **Class G (uncontrolled) airspace**, where carry
 - **You must not enter controlled airspace (Classes A–D)** without a radio and ATC clearance.
 - The practical advice: obtain the FRTOL before using any airband radio. It is a straightforward exam and widely available through paramotor and microlight training providers.
 
+## Is ATC a Public Service?
+
+ATC **is** a public service — funded through en-route charges and airport fees (ultimately borne by passengers) and operated by NATS under CAA regulation. However, it is **not a public broadcast**. ATC communications are point-to-point operational messages between controllers and specific aircraft, not intended for a general audience.
+
+The FRTOL is a **competency licence**, not a subscription or access pass. It certifies that the holder can use correct phraseology, understands readback/hearback procedures, and will not cause confusion on safety-critical frequencies. It is analogous to a driving licence (proving competence to participate in a shared safety system) rather than a content subscription.
+
+The UK and US take different philosophical approaches: the US treats ATC as transparent public infrastructure where anyone may listen, while the UK prioritises keeping operational frequencies controlled and restricts access to qualified participants.
+
 ## Legal Alternatives
 
 - **LiveATC.net** — Many UK ATC feeds are streamed online. Listening to internet streams is not covered by the Wireless Telegraphy Act.
