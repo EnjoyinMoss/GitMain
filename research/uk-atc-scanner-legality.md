@@ -37,6 +37,15 @@ Pilots are **authorised** to listen to (and transmit on) ATC frequencies. The Se
 
 Listening to ATC while piloting is not just legal — it is a **legal obligation** in controlled airspace.
 
+## Paramotor Pilots Without an FRTOL
+
+Paramotors typically operate in **Class G (uncontrolled) airspace**, where carrying a radio is **not mandatory**. However:
+
+- **Flying without a radio** in Class G is perfectly legal — no FRTOL needed if you don't carry one.
+- **Carrying an airband radio and listening without an FRTOL** is likely illegal — the FRTOL is what provides authorisation to use aviation frequencies. Without it, Section 48 still applies even while airborne.
+- **You must not enter controlled airspace (Classes A–D)** without a radio and ATC clearance.
+- The practical advice: obtain the FRTOL before using any airband radio. It is a straightforward exam and widely available through paramotor and microlight training providers.
+
 ## Legal Alternatives
 
 - **LiveATC.net** — Many UK ATC feeds are streamed online. Listening to internet streams is not covered by the Wireless Telegraphy Act.
